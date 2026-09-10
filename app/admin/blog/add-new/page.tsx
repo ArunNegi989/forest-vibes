@@ -185,15 +185,11 @@ export default function AddBlogPage() {
     metaTitle: "",
     metaDescription: "",
     metaKeywords: [],
+    schemaMarkup: "", // ✅ now part of form state
     status: "Draft",
   });
 
   const [metaKeywordInput, setMetaKeywordInput] = useState("");
-
-  // Schema markup (JSON-LD) — kept as a plain field for now, not wired to the
-  // save payload yet. Add `schemaMarkup: string` to BlogFormValues and include
-  // it in the payload below once you're ready to persist it.
-  const [schemaMarkup, setSchemaMarkup] = useState("");
 
   const addMetaKeyword = (val: string) => {
     const k = val.trim();
@@ -483,8 +479,6 @@ export default function AddBlogPage() {
           </p>
         </div>
       </div>
-
-      
 
       <div className={styles.formCard}>
         {/* 1. META INFORMATION */}
@@ -1816,10 +1810,10 @@ export default function AddBlogPage() {
                   backgroundColor: "rgba(47,111,78,0.03)",
                 }}
                 placeholder={`{\n  "@context": "https://schema.org",\n  "@type": "BlogPosting",\n  "headline": "${form.title || "Post title"}"\n}`}
-                value={schemaMarkup}
+                value={form.schemaMarkup}
                 rows={8}
                 spellCheck={false}
-                onChange={(e) => setSchemaMarkup(e.target.value)}
+                onChange={(e) => set("schemaMarkup", e.target.value)}
               />
             </div>
           </div>
@@ -1828,7 +1822,7 @@ export default function AddBlogPage() {
         <div className={styles.formDivider} />
 
         <div className={styles.formActions}>
-          <Link href="/admin/dashboard/blog" className={styles.cancelBtn}>
+          <Link href="/admin/blog" className={styles.cancelBtn}>
             ← Cancel
           </Link>
           <button

@@ -92,6 +92,7 @@ export interface BlogFormValues {
   metaTitle: string;
   metaDescription: string;
   metaKeywords: string[];
+  schemaMarkup: string; // ✅ added — JSON-LD structured data, now part of form state
 
   status: BlogStatus;
 }
@@ -114,7 +115,6 @@ export interface BlogFormErrors {
 export interface Blog extends Omit<BlogFormValues, "date"> {
   _id: string;
   date: string;
-  schemaMarkup?: string;
   createdAt?: string;
   updatedAt?: string;
 }

@@ -81,16 +81,11 @@ export default function EditBlogPage() {
     title: "", slug: "", excerpt: "", date: "", author: "", authorRole: "",
     coverImage: "", tags: [], content: [],
     metaTitle: "", metaDescription: "", metaKeywords: [],
+    schemaMarkup: "", // ✅ now part of form state
     status: "Draft",
   });
 
   const [metaKeywordInput, setMetaKeywordInput] = useState("");
-
-  // Schema markup (JSON-LD) — kept as a plain field for now, not wired to the
-  // save payload yet. Add `schemaMarkup: string` to BlogFormValues, populate
-  // it from `raw.schemaMarkup` below, and include it in the update payload
-  // once you're ready to persist it.
-  const [schemaMarkup, setSchemaMarkup] = useState("");
 
   useEffect(() => {
     if (!id) return;
@@ -137,9 +132,9 @@ export default function EditBlogPage() {
           metaTitle: raw.metaTitle ?? "",
           metaDescription: raw.metaDescription ?? "",
           metaKeywords: raw.metaKeywords ?? [],
+          schemaMarkup: raw.schemaMarkup ?? "", // ✅ loaded into form now
           status: raw.status ?? "Draft",
         });
-        setSchemaMarkup(raw.schemaMarkup ?? "");
       } catch (err: any) {
         setLoadError(err?.response?.data?.message || err?.message || "Failed to load blog");
       } finally {
@@ -342,7 +337,6 @@ export default function EditBlogPage() {
     return (
       <div className={styles.successScreen}>
         <div className={styles.successCard}>
-       
           <p className={styles.successText}>Loading blog post…</p>
         </div>
       </div>
@@ -364,7 +358,6 @@ export default function EditBlogPage() {
     return (
       <div className={styles.successScreen}>
         <div className={styles.successCard}>
-        
           <div className={styles.successCheck}>✓</div>
           <h2 className={styles.successTitle}>{submitted === "draft" ? "Saved as Draft!" : "Blog Updated!"}</h2>
           <p className={styles.successText}>Redirecting to blog list…</p>
@@ -388,8 +381,6 @@ export default function EditBlogPage() {
           <p className={styles.pageSubtitle}>Update meta, cover image, and content blocks</p>
         </div>
       </div>
-
-     
 
       <div className={styles.formCard}>
 
@@ -964,10 +955,10 @@ export default function EditBlogPage() {
                   backgroundColor: "rgba(47,111,78,0.03)",
                 }}
                 placeholder={`{\n  "@context": "https://schema.org",\n  "@type": "BlogPosting",\n  "headline": "${form.title || "Post title"}"\n}`}
-                value={schemaMarkup}
+                value={form.schemaMarkup}
                 rows={8}
                 spellCheck={false}
-                onChange={(e) => setSchemaMarkup(e.target.value)}
+                onChange={(e) => set("schemaMarkup", e.target.value)}
               />
             </div>
           </div>
@@ -976,7 +967,7 @@ export default function EditBlogPage() {
         <div className={styles.formDivider} />
 
         <div className={styles.formActions}>
-          <Link href="/admin/dashboard/blog" className={styles.cancelBtn}>← Cancel</Link>
+          <Link href="/admin/blog" className={styles.cancelBtn}>← Cancel</Link>
           <button type="button" className={styles.draftBtn}
             onClick={() => handleSubmit(true)} disabled={isSubmitting}>
             Save as Draft
