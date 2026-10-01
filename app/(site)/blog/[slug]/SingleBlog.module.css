@@ -193,15 +193,7 @@
   color: #2a372a;
 }
 
-.content p:first-of-type::first-letter {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 4.2rem;
-  float: left;
-  line-height: 0.78;
-  padding: 8px 14px 0 0;
-  color: var(--fv-forest);
-  font-weight: 600;
-}
+
 
 .content h2 {
   font-family: "Playfair Display", Georgia, serif;
