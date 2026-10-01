@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import { useState } from "react";
 
 // ─── Config — edit these to customise ────────────────────────────────────────
@@ -143,14 +144,14 @@ export default function Footer() {
             {/* Socials */}
             <div className="flex gap-4 mt-7">
               {socials.map((s) => (
-                <a
+                <Link
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
                   className="w-9 h-9 border border-[#cbc7bc] flex items-center justify-center text-[#555] hover:border-[#3a6349] hover:text-[#3a6349] transition-colors"
                 >
                   {s.icon}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -163,13 +164,13 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-[13px] text-black hover:text-[#3a6349] transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-3 h-px bg-[#cbc7bc] group-hover:bg-[#3a6349] group-hover:w-4 transition-all duration-200 inline-block" />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

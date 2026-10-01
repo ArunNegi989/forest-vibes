@@ -179,25 +179,25 @@ export default function Navbar() {
         />
 
         {/* Logo */}
-        <a href="/" className="relative flex items-center gap-2.5 group z-10">
+        <Link href="/" className="relative flex items-center gap-2.5 group z-10">
           <img
             src="/logo-nobg.webp"
             alt="Forrest Vibes"
             className="w-30 h-20 object-contain transition-transform duration-300 mt-4 group-hover:scale-105"
           />
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <ul className="relative z-10 hidden md:flex items-center gap-9 list-none">
           {navLinks.map((link) => (
             <li key={link.label}>
-              <a
+              <Link
                 href={link.href}
                 className={linkClass}
                 style={{ textShadow: linkShadow }}
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -250,7 +250,7 @@ export default function Navbar() {
 
           <div className="flex-1 flex flex-col justify-center px-10 gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
@@ -258,17 +258,17 @@ export default function Navbar() {
                 style={{ WebkitTapHighlightColor: "transparent" }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
 
-            <a
+            <Link
               href="/contact-us"
               onClick={() => setMobileOpen(false)}
               className="menu-btn mt-8 text-center text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] py-4 rounded-sm hover:bg-[#1e3f2b] transition-colors"
               style={{ WebkitTapHighlightColor: "transparent" }}
             >
               INQUIRE NOW
-            </a>
+            </Link>
           </div>
 
           <p className="menu-footer text-center text-[10px] tracking-widest uppercase text-stone-400 pb-10">
