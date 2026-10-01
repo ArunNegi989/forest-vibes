@@ -203,9 +203,9 @@ export default function Navbar() {
         </ul>
 
         {/* Inquire Now — Desktop */}
-        <a href="/contact-us" className="relative z-10 hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200 cursor-pointer">
+        <Link href="/contact-us" className="relative z-10 hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200 cursor-pointer">
           INQUIRE NOW
-        </a>
+        </Link>
 
         {/* Hamburger — Mobile */}
         <button
